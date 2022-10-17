@@ -1,6 +1,8 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, Query } from '@nestjs/common';
+import { Roles } from 'src/decorators/role.decorator';
 import { Public } from 'src/decorators/route.decorator';
 import { CategoryDto } from 'src/dto/category.dto';
+import { Role } from 'src/enums/role.enum';
 import { CategoryService } from "./services/category.service"
 
 @Controller('api/v1/categories')
@@ -9,7 +11,8 @@ export class CategoriesController {
 
   }
 
-  @Public()
+  // @Public()
+  @Roles(Role.Admin)
   @Get()
   index(): any {
     return this.categoryService.getAll()
