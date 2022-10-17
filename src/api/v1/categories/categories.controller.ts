@@ -1,4 +1,5 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, Query } from '@nestjs/common';
+import { Public } from 'src/decorators/route.decorator';
 import { CategoryDto } from 'src/dto/category.dto';
 import { CategoryService } from "./services/category.service"
 
@@ -8,6 +9,7 @@ export class CategoriesController {
 
   }
 
+  @Public()
   @Get()
   index(): any {
     return this.categoryService.getAll()
