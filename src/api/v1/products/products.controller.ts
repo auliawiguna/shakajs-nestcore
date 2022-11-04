@@ -14,10 +14,10 @@ export class ProductsController {
 
   @Get()
   @Header('Content-Type', 'application/json')
-  findAll() {
+  async findAll() {
     return {
       status: true,
-      result: this.productsService.findAll()
+      result: this.productsService.findAll(),
     }
   }
 

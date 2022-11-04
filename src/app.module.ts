@@ -8,9 +8,10 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthService } from './api/v1/auth/auth.service';
 import { ConfigModule } from '@nestjs/config';
 import app from './config/app';
+import database from './config/database';
 
 @Module({
-  imports: [CategoriesModule, ProductsModule, AuthModule, UsersModule, PassportModule, ConfigModule.forRoot({isGlobal: true, load: [app]})],
+  imports: [CategoriesModule, ProductsModule, AuthModule, UsersModule, PassportModule, ConfigModule.forRoot({isGlobal: true, load: [app]}), database().sequelize],
   controllers: [],
   providers: [NumberHelper, AuthService],
 })

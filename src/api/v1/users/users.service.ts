@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
+import { User as UserModel } from './entities/user.model';
 
 export type User = any
 
@@ -27,6 +29,15 @@ export class UsersService {
       role: ['user'],
     },
   ]
+
+  constructor(
+    @InjectModel(UserModel)
+    private userModel: typeof UserModel
+  ){}
+
+  async findAll(): Promise<UserModel[]> {
+    return this.userModel.findAll()
+  }
   
   async findOne(username: string): Promise<User | undefined> {
     return this.users.find(u => u.username==username)
